@@ -20,7 +20,7 @@ const RealUsernameField = ({value, handleChange}) => {
             <InputLabel htmlFor="real-username" shrink={true}>Link/Username to Real FB Account</InputLabel>
             <Input id="real-username" value={value} onChange={handleChange} />
             <FormHelperText>
-                E.g. https://www.facebook.com/peioris, peioris, fb.com/peioris, peioris, https://www.facebook.com/peioris?ref=br_rs
+                E.g. https://www.facebook.com/peioris, peioris, fb.com/peioris
             </FormHelperText>
             <FormHelperText>
                 This information will not be shared to the public.
