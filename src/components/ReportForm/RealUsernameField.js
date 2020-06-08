@@ -17,7 +17,7 @@ const RealUsernameField = ({value, handleChange}) => {
 
     return (
         <FormControl className={classes.root}>
-            <InputLabel htmlFor="real-username" shrink={true}>Username</InputLabel>
+            <InputLabel htmlFor="real-username" shrink={true}>Link/Username to Real FB Account</InputLabel>
             <Input id="real-username" value={value} onChange={handleChange} />
             <FormHelperText>
                 This information will not be shared to the public.

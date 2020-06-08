@@ -22,7 +22,7 @@ const FakeUsernameField = ({index, sending, username, handleChange, handleDelete
                 <InputLabel
                     htmlFor={`fake-username-${index}`}
                     shrink={true} >
-                    Account #{`${index + 1}`}
+                    Link/Username #{`${index + 1}`}
                 </InputLabel>
                 <Input
                     id={`fake-username-${index}`}
