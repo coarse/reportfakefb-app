@@ -1,4 +1,8 @@
 const BASE_URL = `https://reportfakefbph.herokuapp.com`
+if (process.env.NODE_ENV !== 'dev') {
+    const BASE_URL = `http://localhost:5000`
+}
+
 
 export default {
     reports: {

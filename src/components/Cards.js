@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const DataCard = ({account}) => {
+export const DataCard = ({loading, account}) => {
     const classes = useStyles();
 
     return (
         <Paper className={classes.card}>
-            { (!account) ? 'Loading...' : (
+            { (loading || !account) ? 'Loading...' : (
                 (account.username) ? (
                     <>
                         <Typography variant="h6">Account: {account.username}</Typography>
@@ -90,12 +90,12 @@ const ListItemLink = ({primary, to}) => {
     );
 };
 
-export const SimilarCard = ({account}) => {
+export const SimilarCard = ({loading, account}) => {
     const classes = useStyles();
 
     return (
         <Paper className={classes.card}>
-            { (!account) ? 'Loading...' : (
+            { (loading || !account) ? 'Loading...' : (
                 <>
                     <Typography variant="h6">{ (account.username) ? 'Similar' : 'Related' } Fake Accounts</Typography>
                     <List className={classes.lastItem}>

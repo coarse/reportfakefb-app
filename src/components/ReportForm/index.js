@@ -7,6 +7,7 @@ import RealUsernameField from './RealUsernameField.js';
 import FakeUsernameField from './FakeUsernameField.js';
 import { AddEntryButton, SendButton } from './Buttons.js';
 
+import red from '@material-ui/core/colors/red';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,10 +27,14 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         margin: theme.spacing(2),
-    }
+    },
+    error: {
+        color: red[500],
+        margin: theme.spacing(0, 2, 2, 2)
+    },
 }));
 
-const ReportForm = ({fakes, real, sending, handleChangeReal, handleAdd, handleChangeFake, handleDelete, handleSend}) => {
+const ReportForm = ({fakes, real, sending, reportError, handleChangeReal, handleAdd, handleChangeFake, handleDelete, handleSend}) => {
     const classes = useStyles();
 
     return (
@@ -55,6 +60,11 @@ const ReportForm = ({fakes, real, sending, handleChangeReal, handleAdd, handleCh
             }
             <AddEntryButton disabled={sending} onClick={handleAdd} />
             <Divider />
+            {
+                (reportError) ? (
+                    <Typography className={classes.error} variant="subtitle2">{ reportError.message }</Typography>
+                ) : ''
+            }
             <SendButton disabled={sending} onClick={handleSend} />
         </form>
     );

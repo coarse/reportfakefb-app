@@ -30,6 +30,7 @@ export default function Dashboard() {
     const [real, setReal] = React.useState('');
     const [fakes, setFakes] = React.useState(['']);
     const [sending, setSending] = React.useState(false);
+    const [reportError, setReportError] = React.useState(null);
 
     const [fakeAccounts, setFakeAccounts] = React.useState([]);
 
@@ -81,13 +82,25 @@ export default function Dashboard() {
             },
             body: JSON.stringify({real, fakes}),
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status === 200) {
+                    return Promise.resolve(res.json());
+                }
+
+                return Promise.resolve(res.json()).then((data) => {
+                    return Promise.reject(data);
+                });
+            })
             .then((data) => {
                 handleCloseModal();
                 history.push(`/${data.id}`);
             }, (error) => {
-                console.error(error);
+                console.error("error: ", error.message);
+                setReportError(error);
                 setSending(false);
+            })
+            .catch((catchError) => {
+                console.error("Caught: ", catchError)
             });
     };
 
@@ -97,6 +110,7 @@ export default function Dashboard() {
                 fakes={fakes}
                 real={real}
                 sending={sending}
+                reportError={reportError}
                 handleChangeReal={handleChangeReal}
                 handleAdd={handleAddFakeRow}
                 handleChangeFake={handleChangeFakeValue}

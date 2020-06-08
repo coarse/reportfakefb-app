@@ -68,10 +68,10 @@ export default function Account() {
                     ((loading && !account) || account) ? (
                         <>
                             <Grid item xs={12} sm={6}>
-                                <DataCard account={account}></DataCard>
+                                <DataCard loading={loading} account={account}></DataCard>
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <SimilarCard account={account}></SimilarCard>
+                                <SimilarCard loading={loading} account={account}></SimilarCard>
                             </Grid>
                         </>
                     ) : (
