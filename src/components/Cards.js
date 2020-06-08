@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -48,7 +49,8 @@ export const DataCard = ({loading, account}) => {
                             variant="outlined"
                             color="primary"
                             size="small"
-                            href={`https://facebook.com/${account.username}`} >
+                            href={`https://facebook.com/${account.username}`}
+                            target="_blank" >
                             Facebook Profile
                         </Button>
                     </>
@@ -83,8 +85,18 @@ const ListItemLink = ({primary, to}) => {
 
     return (
         <li>
-            <ListItem component={CustomLink}>
+            <ListItem button component={CustomLink}>
                 <ListItemText primary={primary} />
+                <ListItemSecondaryAction>
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        size="small"
+                        href={`https://facebook.com/${primary}`}
+                        target="_blank" >
+                        Facebook Profile
+                    </Button>
+                </ListItemSecondaryAction>
             </ListItem>
         </li>
     );

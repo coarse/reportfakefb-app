@@ -194,7 +194,8 @@ export default function CustomPaginationActionsTable({accounts, handleFetch}) {
                                                     variant="contained"
                                                     color="primary"
                                                     size="small"
-                                                    href={`https://facebook.com/${row.username}`} >
+                                                    href={`https://facebook.com/${row.username}`}
+                                                    target="_blank" >
                                                     Facebook
                                                 </Button>
                                                 {/* {row.calories} */}
