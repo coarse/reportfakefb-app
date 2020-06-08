@@ -117,7 +117,7 @@ const TableToolbar = () => {
     );
 };
 
-export default function CustomPaginationActionsTable({accounts, handleFetch}) {
+export default function CustomPaginationActionsTable({accounts, loading, fetchError, handleFetch}) {
     const classes = useStyles2();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -158,7 +158,7 @@ export default function CustomPaginationActionsTable({accounts, handleFetch}) {
                                     <TableRow></TableRow>
                                     <TableRow>
                                         <TableCell colSpan={6} align="center">
-                                            No data to show.
+                                            { (loading) ? 'Loading...' : 'No data to show.' }
                                         </TableCell>
                                     </TableRow>
                                     <TableRow></TableRow>

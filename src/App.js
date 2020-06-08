@@ -33,6 +33,8 @@ export default function Dashboard() {
     const [reportError, setReportError] = React.useState(null);
 
     const [fakeAccounts, setFakeAccounts] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
+    const [fetchError, setFetchError] = React.useState(null);
 
     const handleOpenModal = () => setOpen(true);
     const handleCloseModal = () => {
@@ -64,12 +66,27 @@ export default function Dashboard() {
     };
 
     const handleFetchData = () => {
+        setLoading(true);
         fetch(api.reports.list)
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status === 200) {
+                    return Promise.resolve(res.json());
+                }
+
+                return Promise.resolve(res.json()).then((data) => {
+                    return Promise.reject(data);
+                });
+            })
             .then((data) => {
                 setFakeAccounts(data.accounts);
+                setLoading(false);
             }, (error) => {
-                console.error(error);
+                console.error("error: ", error.message);
+                setFetchError(error);
+                setLoading(false);
+            })
+            .catch((catchError) => {
+                console.error("Caught: ", catchError)
             });
     };
 
@@ -142,6 +159,8 @@ export default function Dashboard() {
                             <Route path="/" exact>
                                 <Home
                                     accounts={fakeAccounts}
+                                    loading={loading}
+                                    fetchError={fetchError}
                                     handleFetch={handleFetchData} />
                             </Route>
                             <Route path="/:uuid">
