@@ -1,5 +1,5 @@
 let BASE_URL = `https://reportfakefbph.herokuapp.com`
-if (process.env.NODE_ENV !== 'dev') {
+if (process.env.NODE_ENV === 'dev') {
     BASE_URL = `http://localhost:5000`;
 }
 
